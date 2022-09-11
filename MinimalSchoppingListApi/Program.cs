@@ -7,8 +7,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<ApiDbContext>(opt => opt.UseInMemoryDatabase("ShoppingListApi"));
 
-
 var app = builder.Build();
+
+app.MapGet("/shoppinglist", async (ApiDbContext db) =>
+    await db.Groseries.ToListAsync());
 
 if(app.Environment.IsDevelopment())
 {
