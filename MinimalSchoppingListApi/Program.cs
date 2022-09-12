@@ -12,7 +12,15 @@ var app = builder.Build();
 app.MapGet("/shoppinglist", async (ApiDbContext db) =>
     await db.Groseries.ToListAsync());
 
-if(app.Environment.IsDevelopment())
+app.MapPost("/shoppinglist", async (Grocery grocery, ApiDbContext db) =>
+{
+    db.Groseries.Add(grocery);
+    await db.SaveChangesAsync();
+
+    return Results.Created($"/shoppinglist /{grocery.Id}", grocery);
+});
+
+if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
