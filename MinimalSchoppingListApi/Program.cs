@@ -22,7 +22,6 @@ app.MapGet("/shoppinglist/{id}", async (int id, ApiDbContext db) =>
 });
 
 
-
 app.MapPost("/shoppinglist", async (Grocery grocery, ApiDbContext db) =>
 {
     db.Groseries.Add(grocery);
