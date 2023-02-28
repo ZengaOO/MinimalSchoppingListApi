@@ -7,5 +7,6 @@
         public string? Name { get; set; }
 
         public bool Purchased { get; set; }
+
     }
 }
